@@ -1,0 +1,41 @@
+{% extends 'police_base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">date</th>
+      <th scope="col">name</th>
+      <th scope="col">complain</th>
+      <th scope="col">details</th>
+      <th scope="col">pincode</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in com %}
+    <tr>
+      <th scope="row">{{i.date.date}}</th>
+      <td>{{i.name}}</td>
+      <td>{{i.complaint}}</td>
+      <td>{{i.details}}</td>
+      <td>{{i.pincode}}</td>
+      <td><a href="replay"><input type="submit" value="replay"> </a></td>
+    </tr>
+  {% endfor %}
+<!--    <tr>-->
+<!--      <th scope="row">2</th>-->
+<!--      <td>Jacob</td>-->
+<!--      <td>Thornton</td>-->
+<!--      <td>@fat</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th scope="row">3</th>-->
+<!--      <td colspan="2">Larry the Bird</td>-->
+<!--      <td>@twitter</td>-->
+<!--    </tr>-->
+  </tbody>
+</table>
+</body>
+{% endblock %}

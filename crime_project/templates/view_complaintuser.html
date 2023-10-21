@@ -1,0 +1,58 @@
+{% extends 'user_base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">date</th>
+        <th scope="col">name</th>
+        <th scope="col">complain</th>
+        <th scope="col">details</th>
+        <th scope="col">pincode</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in uc %}
+        <tr>
+          <th scope="row">{{ i.date.date }}</th>
+          <td>{{ i.name }}</td>
+          <td>{{ i.complaint }}</td>
+          <td>{{ i.details }}</td>
+          <td>{{ i.pincode }}</td>
+          <td>
+            <a href="#" onclick="toggleTextarea('{{ i.id }}')" class="replay-link">View Replay</a>
+            <textarea id="replayTextarea_{{ i.id }}" class="replay-textarea" readonly style="display: none;">.</textarea>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+
+<style>
+  .replay-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .replay-textarea {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+    padding: 5px;
+    margin-top: 10px;
+  }
+</style>
+
+<script>
+  function toggleTextarea(id) {
+    var textarea = document.getElementById("replayTextarea_" + id);
+    textarea.style.display = textarea.style.display === "none" ? "block" : "none";
+    var link = document.querySelector(`[onclick="toggleTextarea('${id}')"]`);
+    link.innerHTML = textarea.style.display === "none" ? "View Replay" : "Hide Replay";
+  }
+</script>
+{% endblock %}

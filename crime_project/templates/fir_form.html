@@ -1,0 +1,72 @@
+{% extends 'police_base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+    <div class="complaint-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-5 col-sm-10 complaint-body p-4">
+                    <div class="text-center">
+                        <h2>FIR form</h2>
+                    </div>
+
+                    <form method="POST" action="fir">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="policeStation">Police Station</label>
+                              <select class="form-control" id="policeStation" name="police_station">
+                                <!-- Iterate over available police stations -->
+                                {% for s in police_stations %}
+                                <option value="{{ s.id }}">{{ s.station }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="crimeType">Crime Type</label>
+                            <select class="form-control" id="crimeType" name="crime_type">
+                                <!-- Iterate over available crime types -->
+
+                                {% for cts in crime_types %}
+                                <option value="{{ cts.id }}">{{ cts.type }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput">Criminal Name</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput"
+                                   name="name" placeholder="" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Criminal Address</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea2" name="address" rows="3"
+                                      required></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"
+                                      required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn w-100 complaintBtn" type="submit">Submit</button>
+                        </div>
+                    </form>
+                    <!-- <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                        </small>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

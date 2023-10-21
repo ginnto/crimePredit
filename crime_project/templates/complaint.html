@@ -1,0 +1,60 @@
+{% extends 'user_base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+<div class="complaint-form">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-5 col-sm-10 complaint-body p-4">
+                <div class="text-center">
+                <h2>Complaint form</h2>
+            </div>
+
+                <form method="POST" action="complaint">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput2"
+                               name="name" placeholder="whats your complaint" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Address</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea2" name="address" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Pin code</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput3"
+                               name="pin" placeholder="whats your complaint" required>
+                    </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Complaint</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                               name="complaint" placeholder="whats your complaint" required pattern="[a-zA-Z ]+">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Details</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="detail" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn w-100 complaintBtn" type="submit">Submit</button>
+                    </div>
+                </form>
+                <!-- <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                    </small>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}
